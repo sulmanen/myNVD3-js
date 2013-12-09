@@ -1,4 +1,4 @@
-# NVD3 - v1.1.15-beta
+# myNVD3 - v1.1.15-beta
 ## Release notes for version 1.1.15 beta
 * Various fixes across the board
 
