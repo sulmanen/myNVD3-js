@@ -14,8 +14,7 @@
     "d3",
     "visualization",
     "svg",
-    "charts",
-    "reusable"
+    "charts"
   ],
   "license": "Apache License, v2.0",
   "dependencies": {
