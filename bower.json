@@ -6,7 +6,7 @@
     "Samuli Ulmanen <samuli.ulmanen@rovio.com>"
   ],
   "description": "Fork of NVD3.js with legend moving and extra tooltip options",
-  "main": "nv.d3.js",
+  "main": ["js/nv.d3.js", "css/nv.d3.css"],
   "dependencies": {
      "d3": "3.3.5"
   },
