@@ -5278,26 +5278,29 @@ nv.models.line = function() {
 
 
       var linePaths = groups.selectAll('path.nv-line')
-          .data(function(d) { return [d.values] });
+          .data(function(d) { return [d] });
       linePaths.enter().append('path')
           .attr('class', 'nv-line')
-          .attr('d',
-            d3.svg.line()
+          .style('stroke-width', function(d) {if(d['stroke-width']) return d['stroke-width'];})	
+          .attr('d', function(d) {
+            return d3.svg.line()
               .interpolate(interpolate)
               .defined(defined)
               .x(function(d,i) { return nv.utils.NaNtoZero(x0(getX(d,i))) })
               .y(function(d,i) { return nv.utils.NaNtoZero(y0(getY(d,i))) })
-          );
+              .apply(this, [d.values])
+          });
 
       linePaths
           .transition()
-          .attr('d',
-            d3.svg.line()
+          .attr('d', function(d) {
+            return d3.svg.line()
               .interpolate(interpolate)
               .defined(defined)
               .x(function(d,i) { return nv.utils.NaNtoZero(x(getX(d,i))) })
               .y(function(d,i) { return nv.utils.NaNtoZero(y(getY(d,i))) })
-          );
+              .apply(this, [d.values])
+          });
 
 
 
@@ -9467,6 +9470,8 @@ nv.models.multiChart = function() {
       color = d3.scale.category20().range(),
       width = null, 
       height = null,
+      getX = function(d) { return d.x },
+      getY = function(d) { return d.y },
       showLegend = true,
       tooltips = true,
       tooltip = function(key, x, y, e, graph) {
